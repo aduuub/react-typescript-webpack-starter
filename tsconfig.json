@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "target": "es5", // Browser target
+    "module": "esnext", // Targeting the latest ES features (Need this for dynamic importing)
+    "lib": [
+      "dom",
+      "es6",
+      "scripthost",
+      "es2015.promise"
+    ],
+    "jsx": "react", // Support JSX in .tsx files
+    "declaration": false, // Generates .d.ts files
+    "sourceMap": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "baseUrl": "src",
+    "paths": {
+      "app": ["src"],
+      "components": ["src/components"],
+    },
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "compileOnSave": false
+}
