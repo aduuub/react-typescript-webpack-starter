@@ -3,4 +3,6 @@ import * as ReactDOM from 'react-dom';
 
 import { Login } from 'components/login';
 
-ReactDOM.render(<Login title={'hello w'} age={3} /> , document.getElementById('root'));
+import './styles/index.scss';
+
+ReactDOM.render(<Login title={'hello wasdasdf'} age={3} /> , document.getElementById('root'));

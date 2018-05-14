@@ -1,8 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-    mode: 'development',
     entry: './src/index.tsx',
     devtool: 'inline-source-map',
     resolve: {
@@ -36,7 +36,32 @@ module.exports = {
                 options: {
                     configFile: 'tsconfig.json',
                 }
-            }
+            },
+            {
+                // Needed to load CSS files from packages. EG. leaflet.css
+                test: /\.css$/,
+                use: [
+                    { loader: 'style-loader' },
+                    { loader: 'css-loader' },
+                    { loader: 'resolve-url-loader' },
+                ]
+            },
+            {
+                test: /\.scss$/,
+                exclude: /node_modules/,
+                use: ExtractTextPlugin.extract({
+                    use: [
+                        { loader: "css-loader" },
+                        {
+                            loader: "sass-loader",
+                            options: {
+                                sourceMap: true,
+                            }
+                        },
+                    ],
+                    fallback: "style-loader",
+                }),
+            },
         ]
     },
     output: {
@@ -45,9 +70,11 @@ module.exports = {
     },
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'),
-        port: 3000,
+        port: 8080,
     },
     plugins: [
+        new ExtractTextPlugin('bundle.css'),
+
         new HtmlWebpackPlugin({
             template: "index.html"
         })

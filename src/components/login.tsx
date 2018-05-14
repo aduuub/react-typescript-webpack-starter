@@ -8,7 +8,7 @@ interface IProps {
 export class Login extends React.Component<IProps> {
     render() {
         return (
-            <h1>{this.props.age}</h1>
+            <h1>{this.props.title}</h1>
         );
     }
 }
