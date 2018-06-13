@@ -1,0 +1,57 @@
+// ======
+// MIXINS
+// ======
+
+@mixin clearfix {
+  &:after {
+      display: table;
+      content: '';
+      clear: both;
+  }
+}
+
+@mixin hover {
+  .no-touch &:hover {
+      @content;
+  }
+}
+
+// ======
+// FONTS
+// ======
+
+@mixin font-smoothing($toggle: true) {
+  @if ($toggle == true) {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+  } @else {
+      -webkit-font-smoothing: subpixel-antialiased;
+      -moz-osx-font-smoothing: auto;
+  }
+}
+
+@mixin font-smoothing-off {
+  @include font-smoothing(false);
+}
+
+// ===========
+// POSITIONS
+// ===========
+
+@mixin abs($t:auto, $r:auto, $b: auto, $l: auto, $z:auto) {
+  position: absolute;
+  top: $t;
+  right: $r;
+  bottom: $b;
+  left: $l;
+  z-index: $z;
+}
+
+@mixin fixed($t:auto, $r:auto, $b: auto, $l: auto, $z:auto) {
+  position: fixed;
+  top: $t;
+  right: $r;
+  bottom: $b;
+  left: $l;
+  z-index: $z;
+}

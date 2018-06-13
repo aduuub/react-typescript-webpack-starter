@@ -9,6 +9,7 @@ module.exports = {
         alias: {
             app: path.resolve(__dirname, './src'),
             components: path.resolve(__dirname, './src/components'),
+            routes: path.resolve(__dirname, './src/routes'),
         },
         extensions: ['.tsx', '.ts', '.js'],
     },
@@ -66,11 +67,13 @@ module.exports = {
     },
     output: {
         filename: 'static/js/bundle.js',
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, 'dist'),
+        publicPath: '/'
     },
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'),
         port: 8080,
+        historyApiFallback: true,
     },
     plugins: [
         new ExtractTextPlugin('bundle.css'),

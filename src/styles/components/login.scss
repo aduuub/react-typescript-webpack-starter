@@ -1,0 +1,22 @@
+.Login {
+  margin-left: auto;
+  margin-right: auto;
+  width: 320px;
+  padding: 10px;
+}
+
+.Login-input {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  padding: 10px;
+  overflow: hidden;
+  background-color: white;
+  border: 1px solid $grey-dark;
+}
+
+.Login-label {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  display: block;
+}

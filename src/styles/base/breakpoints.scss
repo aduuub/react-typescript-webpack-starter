@@ -1,0 +1,41 @@
+// ============
+// Breakpoints
+// ============
+
+// Usage:
+// @media #{$mobile-only} {
+//   ...
+// }
+
+// 1. A miniscule unit to ensure fullest no gaps between ranges
+$infinitesimal: 0.01px; // 1
+$breakpoint1: 768px;
+$breakpoint2: 1024px;
+$breakpoint3: 1280px;
+$breakpoint4: 1600px;
+
+
+// ============
+// Ranges
+// ============
+
+// Define the lower and upper bounds for each media size
+$sm-range: (0, $breakpoint1 - $infinitesimal); // 0-767
+$sm-md-range: ($breakpoint1, $breakpoint2 - $infinitesimal); // 768-1023
+$md-lg-range: ($breakpoint2, $breakpoint3 - $infinitesimal); // 1024-1279
+$lg-xl-range: ($breakpoint3, $breakpoint4 - $infinitesimal); // 1280-1599
+$xl-range: ($breakpoint4); // 1600+
+
+
+// ============
+// Queries
+// ============
+$mobile-only: "(max-width: #{upper-bound($sm-range)})" !default;
+$tablet-only: "(min-width: #{lower-bound($sm-md-range)}) and (max-width:#{upper-bound($md-lg-range)})" !default;
+$laptop-only: "(min-width: #{lower-bound($md-lg-range)}) and (max-width:#{upper-bound($lg-xl-range)})" !default;
+$desktop-only: "(min-width: #{lower-bound($lg-xl-range)}) and (max-width:#{upper-bound($xl-range)})" !default;
+
+$tablet: "print, (min-width: #{lower-bound($sm-md-range)})" !default;
+$laptop: "(min-width: #{lower-bound($md-lg-range)})" !default;
+$desktop: "(min-width: #{lower-bound($lg-xl-range)})" !default;
+$widescreen: "(min-width: #{lower-bound($xl-range)})" !default;

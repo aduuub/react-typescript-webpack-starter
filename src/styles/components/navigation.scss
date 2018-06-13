@@ -1,0 +1,30 @@
+// ==========
+// NAVIGATION
+// ==========
+
+.Nav {
+  background-color: $primary;
+  padding: $v;
+}
+
+.Nav-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: $white;
+}
+
+// <ul>
+.Nav-links {
+  // Reset
+  list-style: none;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+// <li>
+.Nav-links-item {
+  display: inline-block;
+  padding-left: $v/2;
+  padding-right: $v/2;
+}

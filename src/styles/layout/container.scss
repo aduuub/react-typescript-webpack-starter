@@ -1,0 +1,15 @@
+// =========
+// CONTAINER
+// =========
+
+%Container {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  @media #{$tablet} { width: rem($breakpoint1); }
+  @media #{$laptop} { width: rem($breakpoint2); }
+  @media #{$desktop} { width: rem($breakpoint3); }
+  @media #{$widescreen} { width: rem($breakpoint4); }
+}
+
+.Container { @extend %Container !optional; }
