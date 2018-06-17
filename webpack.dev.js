@@ -11,7 +11,7 @@ module.exports = {
             components: path.resolve(__dirname, './src/components'),
             routes: path.resolve(__dirname, './src/routes'),
         },
-        extensions: ['.tsx', '.ts', '.js'],
+        extensions: ['.tsx', '.ts', '.js', '.css']
     },
     module: {
         rules: [

@@ -9,7 +9,7 @@
   .u-#{$namespace}mT-sm { margin-top: $v/2 !important; }
   .u-#{$namespace}mT-md { margin-top: $v !important; }
   .u-#{$namespace}mT-lg { margin-top: $v*1.5 !important; }
-  .u-#{$namespace}mT-lg { margin-top: $v*2 !important; }
+  .u-#{$namespace}mT-xl { margin-top: $v*2 !important; }
   
   // Margin bottom
   .u-#{$namespace}mB-0  { margin-bottom: 0 !important; }
@@ -17,7 +17,7 @@
   .u-#{$namespace}mB-sm { margin-bottom: $v/2 !important; }
   .u-#{$namespace}mB-md { margin-bottom: $v !important; }
   .u-#{$namespace}mB-lg { margin-bottom: $v*1.5 !important; }
-  .u-#{$namespace}mB-lg { margin-bottom: $v*2 !important; }
+  .u-#{$namespace}mB-xl { margin-bottom: $v*2 !important; }
 
   // Margin left
   .u-#{$namespace}mL-0  { margin-left: 0 !important; }
@@ -25,7 +25,7 @@
   .u-#{$namespace}mL-sm { margin-left: $v/2 !important; }
   .u-#{$namespace}mL-md { margin-left: $v !important; }
   .u-#{$namespace}mL-lg { margin-left: $v*1.5 !important; }
-  .u-#{$namespace}mL-lg { margin-left: $v*2 !important; }
+  .u-#{$namespace}mL-xl { margin-left: $v*2 !important; }
 
   // Margin right
   .u-#{$namespace}mR-0  { margin-right: 0 !important; }
@@ -33,7 +33,7 @@
   .u-#{$namespace}mR-sm { margin-right: $v/2 !important; }
   .u-#{$namespace}mR-md { margin-right: $v !important; }
   .u-#{$namespace}mR-lg { margin-right: $v*1.5 !important; }
-  .u-#{$namespace}mR-lg { margin-right: $v*2 !important; }
+  .u-#{$namespace}mR-xl { margin-right: $v*2 !important; }
 }
 
 @include margin();
