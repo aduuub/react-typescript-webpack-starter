@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import Navigation from 'components/navigation';
-
+import Navigation from 'components/landing-nav';
 import Login from 'components/login';
 
 import LandingHome from './landing';
