@@ -1,13 +1,13 @@
 import * as faker from 'faker';
 import * as moment from 'moment';
 import * as React from 'react';
-// @ts-ignore
-import ReactCalendarTimeline, { ReactCalendarTimelineProps, TimelineGroup } from 'react-calendar-timeline/lib';
+import _ from 'react-calendar-timeline';
+import ReactCalendarTimeline, { ReactCalendarTimelineProps, TimelineGroup, TimelineItem } from 'react-calendar-timeline/lib';
 
-import generateFakeData from 'components/utilities/fake-data';
+import { getShiftData } from 'components/utilities/fake-data';
 
 interface IState {
-  shifts: any[];
+  shifts: TimelineItem[];
   groups: TimelineGroup[];
   defaultTimeStart: Date;
   defaultTimeEnd: Date;
@@ -29,7 +29,7 @@ export default class App extends React.Component<{}, IState> {
   constructor(props: any) {
     super(props);
 
-    const { groups, shifts } = generateFakeData();
+    const { groups, shifts } = getShiftData();
     const defaultTimeStart = moment()
       .startOf('day')
       .toDate();
@@ -101,6 +101,7 @@ export default class App extends React.Component<{}, IState> {
         showCursorLine
         canMove={true}
         canResize={'both'}
+        lineHeight={50}
         defaultTimeStart={defaultTimeStart}
         defaultTimeEnd={defaultTimeEnd}
         onItemMove={this.handleItemMove}

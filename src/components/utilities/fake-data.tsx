@@ -1,47 +1,76 @@
-import * as faker from 'faker';
-import * as moment from 'moment';
-import * as React from 'react';
+// @ts-ignore
+import ReactCalendarTimeline, { ReactCalendarTimelineProps, TimelineGroup, TimelineItem } from 'react-calendar-timeline/lib';
 
-export default function(groupCount = 30, itemCount = 1000, daysInPast = 30) {
-  let randomSeed = Math.floor(Math.random() * 1000);
-  let groups = [];
-  for (let i = 0; i < groupCount; i++) {
-    groups.push({
-      id: `${i + 1}`,
-      title: faker.name.firstName(),
-      rightTitle: faker.name.lastName(),
-    });
-  }
+const groups: TimelineGroup[] = [
+  {
+    id: '1',
+    title: 'Adam Wareing',
+    rightTitle: 'Schumm',
+  },
+  {
+    id: '2',
+    title: 'Mitch Coad',
+    rightTitle: 'Schumm',
+  },
+  {
+    id: '3',
+    title: 'Fraser Malpas',
+    rightTitle: 'Schumm',
+  },
+  {
+    id: '4',
+    title: 'Bob Dylan',
+    rightTitle: 'Schumm',
+  },
+];
 
-  let items = [];
-  for (let i = 0; i < itemCount; i++) {
-    const startDate =
-      faker.date.recent(daysInPast).valueOf() + daysInPast * 0.3 * 86400 * 1000;
-    const startValue =
-      Math.floor(moment(startDate).valueOf() / 10000000) * 10000000;
-    const endValue = moment(
-      startDate + faker.random.number({ min: 2, max: 20 }) * 15 * 60 * 1000
-    ).valueOf();
+const shifts: TimelineItem[] = [
+  {
+    className: 'item-weekend',
+    end: 1530985222795,
+    group: '1',
+    id: '0',
+    itemProps: {
+      'data-tip': 'You cant bypass the system without synthesizing the haptic THX circuit!',
+    },
+    start: 1530970000000,
+    title: '8:30am - 3:30pm at Prefab',
+  },
+  {
+    className: 'item-weekend',
+    end: 1530985222795,
+    group: '2',
+    id: '1',
+    itemProps: {
+      'data-tip': 'You cant bypass the system without synthesizing the haptic THX circuit!',
+    },
+    start: 1530970000000,
+    title: '8:30am - 3:30pm at Prefab',
+  },
+  {
+    className: 'item-weekend',
+    end: 1530985222795,
+    group: '3',
+    id: '2',
+    itemProps: {
+      'data-tip': 'You cant bypass the system without synthesizing the haptic THX circuit!',
+    },
+    start: 1530970000000,
+    title: '8:30am - 3:30pm at Prefab',
+  },
+  {
+    className: 'item-weekend',
+    end: 1530985222795,
+    group: '4',
+    id: '3',
+    itemProps: {
+      'data-tip': 'You cant bypass the system without synthesizing the haptic THX circuit!',
+    },
+    start: 1530970000000,
+    title: '8:30am - 3:30pm at Prefab',
+  },
+];
 
-    items.push({
-      id: i + "",
-      group: faker.random.number({ min: 1, max: groups.length }) + "",
-      title: faker.hacker.phrase(),
-      start: startValue,
-      end: endValue,
-      // canMove: startValue > new Date().getTime(),
-      // canResize: 'both',
-      className:
-        moment(startDate).day() === 6 || moment(startDate).day() === 0
-          ? "item-weekend"
-          : "",
-      itemProps: {
-        "data-tip": faker.hacker.phrase()
-      }
-    });
-  }
-
-  items = items.sort((a, b) => b - a);
-
-  return { groups, shifts: items };
+export function getShiftData() {
+  return { shifts, groups };
 }
