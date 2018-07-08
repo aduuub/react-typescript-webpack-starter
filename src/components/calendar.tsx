@@ -3,15 +3,21 @@ import * as moment from 'moment';
 import * as React from 'react';
 // @ts-ignore
 import ReactCalendarTimeline, { ReactCalendarTimelineProps, TimelineGroup } from 'react-calendar-timeline/lib';
-import 'react-calendar-timeline/lib/Timeline.css';
 
-const GROUP_COUNT = 30;
-const ITEM_COUNT = 1000;
+const GROUP_COUNT = 10;
+const ITEM_COUNT = 500;
 const DAYS_IN_PAST = 30;
 
-export default class Calendar extends React.Component {
+interface IState {
+  shifts: any[];
+  groups: TimelineGroup[];
+}
 
-  init(): ReactCalendarTimelineProps {
+export default class Calendar extends React.Component<{}, IState> {
+
+  constructor(props: any) {
+    super(props);
+
     const groups: TimelineGroup[] = [];
     for (let i = 0; i < GROUP_COUNT; i++) {
       groups.push({
@@ -20,14 +26,14 @@ export default class Calendar extends React.Component {
       });
     }
 
-    let items = [];
+    let shifts = [];
     for (let i = 0; i < ITEM_COUNT; i++) {
       const startDate = faker.date.recent(DAYS_IN_PAST).valueOf() + (DAYS_IN_PAST * 0.3) * 86400 * 1000;
       const startValue = moment(startDate).valueOf();
       const endValue = moment(startDate + faker.random.number({ min: 2, max: 20 }) * 15 * 60 * 1000).valueOf();
-      items.push({
+      shifts.push({
         id: i,
-        group: faker.random.number({min: 1, max: groups.length}),
+        group: faker.random.number({ min: 1, max: groups.length }),
         title: 'Shift ',
         start: startValue,
         end: endValue,
@@ -37,22 +43,40 @@ export default class Calendar extends React.Component {
       });
     }
 
-    items = items.sort(function (a: any, b: any) { return b - a; });
-    const minTime = moment().add(-6, 'months').valueOf();
-    const maxTime = moment().add(6, 'months').valueOf();
-
-    return {
+    shifts = shifts.sort(function (a: any, b: any) { return b - a; });
+    this.state = {
+      shifts,
       groups,
-      items,
-      canMove: true, // defaults
-      canResize: true,
-      // @ts-ignore
+    };
+  }
+
+  handleItemResize(itemId: any, time: any, edge: any) {
+    const { shifts } = this.state;
+    this.setState({
+      shifts: shifts.map(
+        (item: any) =>
+          item.id === itemId
+            ? Object.assign({}, item, {
+              start: edge === 'left' ? time : item.start,
+              end: edge === 'left' ? item.end : time,
+            })
+            : item,
+      ),
+    });
+    console.log('Resized', itemId, time, edge);
+  }
+
+  render() {
+    const calendarProps: ReactCalendarTimelineProps = {
+      groups: this.state.groups,
+      items: this.state.shifts,
+      canMove: true,
+      canResize: 'both',
       itemsSorted: true,
       itemTouchSendsClick: false,
-
       defaultTimeStart: moment().startOf('day').toDate(),
       defaultTimeEnd: moment().startOf('day').add(1, 'day').toDate(),
-
+      onItemResize: this.handleItemResize,
       keys: {
         groupIdKey: 'id',
         groupTitleKey: 'title',
@@ -62,41 +86,19 @@ export default class Calendar extends React.Component {
         itemTimeStartKey: 'start',
         itemTimeEndKey: 'end',
       },
-
       itemClick(item: any) {
         console.log('Clicked: ' + item);
       },
-
       moveResizeValidator(action: any, item: any, time: any) {
         if (time < new Date().getTime()) {
           return Math.ceil(new Date().getTime() / (15 * 60 * 1000)) * (15 * 60 * 1000);
         }
         return time;
       },
-
-      // this limits the timeline to -6 months ... +6 months
-      onTimeChange(visibleTimeStart: any, visibleTimeEnd: any) {
-        if (visibleTimeStart < minTime && visibleTimeEnd > maxTime) {
-          // @ts-ignore
-          this.updateScrollCanvas(minTime, maxTime);
-        } else if (visibleTimeStart < minTime) {
-          // @ts-ignore
-          this.updateScrollCanvas(minTime, minTime + (visibleTimeEnd - visibleTimeStart));
-        } else if (visibleTimeEnd > maxTime) {
-          // @ts-ignore
-          this.updateScrollCanvas(maxTime - (visibleTimeEnd - visibleTimeStart), maxTime);
-        } else {
-          // @ts-ignore
-          this.updateScrollCanvas(visibleTimeStart, visibleTimeEnd);
-        }
-      },
     };
-  }
 
-  render() {
-    const params = this.init();
     return (
-    <ReactCalendarTimeline {...params} />
+      <ReactCalendarTimeline {...calendarProps} />
     );
   }
 }
