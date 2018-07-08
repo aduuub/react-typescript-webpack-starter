@@ -4,54 +4,72 @@ import * as React from 'react';
 // @ts-ignore
 import ReactCalendarTimeline, { ReactCalendarTimelineProps, TimelineGroup } from 'react-calendar-timeline/lib';
 
-const GROUP_COUNT = 10;
-const ITEM_COUNT = 500;
-const DAYS_IN_PAST = 30;
+import generateFakeData from 'components/utilities/fake-data';
 
 interface IState {
   shifts: any[];
   groups: TimelineGroup[];
+  defaultTimeStart: Date;
+  defaultTimeEnd: Date;
 }
 
-export default class Calendar extends React.Component<{}, IState> {
+const keys = {
+  groupIdKey: 'id',
+  groupTitleKey: 'title',
+  groupRightTitleKey: 'rightTitle',
+  itemIdKey: 'id',
+  itemTitleKey: 'title',
+  itemDivTitleKey: 'title',
+  itemGroupKey: 'group',
+  itemTimeStartKey: 'start',
+  itemTimeEndKey: 'end',
+};
 
+export default class App extends React.Component<{}, IState> {
   constructor(props: any) {
     super(props);
 
-    const groups: TimelineGroup[] = [];
-    for (let i = 0; i < GROUP_COUNT; i++) {
-      groups.push({
-        id: i + 1,
-        title: faker.name.firstName(),
-      });
-    }
+    const { groups, shifts } = generateFakeData();
+    const defaultTimeStart = moment()
+      .startOf('day')
+      .toDate();
+    const defaultTimeEnd = moment()
+      .startOf('day')
+      .add(1, 'day')
+      .toDate();
 
-    let shifts = [];
-    for (let i = 0; i < ITEM_COUNT; i++) {
-      const startDate = faker.date.recent(DAYS_IN_PAST).valueOf() + (DAYS_IN_PAST * 0.3) * 86400 * 1000;
-      const startValue = moment(startDate).valueOf();
-      const endValue = moment(startDate + faker.random.number({ min: 2, max: 20 }) * 15 * 60 * 1000).valueOf();
-      shifts.push({
-        id: i,
-        group: faker.random.number({ min: 1, max: groups.length }),
-        title: 'Shift ',
-        start: startValue,
-        end: endValue,
-        canMove: startValue > new Date().getTime(),
-        canResize: endValue > new Date().getTime(),
-        className: (moment(startDate).day() === 6 || moment(startDate).day() === 0) ? 'item-weekend' : '',
-      });
-    }
-
-    shifts = shifts.sort(function (a: any, b: any) { return b - a; });
     this.state = {
-      shifts,
       groups,
+      shifts,
+      defaultTimeStart,
+      defaultTimeEnd,
     };
   }
 
-  handleItemResize(itemId: any, time: any, edge: any) {
+  handleItemMove = (itemId: any, dragTime: any, newGroupOrder: any) => {
+    const { shifts, groups } = this.state;
+
+    const group = groups[newGroupOrder];
+
+    this.setState({
+      shifts: shifts.map(
+        (item: any) =>
+          item.id === itemId
+            ? Object.assign({}, item, {
+              start: dragTime,
+              end: dragTime + (item.end - item.start),
+              group: group.id,
+            })
+            : item,
+      ),
+    });
+
+    console.log('Moved', itemId, dragTime, newGroupOrder);
+  }
+
+  handleItemResize = (itemId: any, time: any, edge: any) => {
     const { shifts } = this.state;
+
     this.setState({
       shifts: shifts.map(
         (item: any) =>
@@ -61,44 +79,33 @@ export default class Calendar extends React.Component<{}, IState> {
               end: edge === 'left' ? item.end : time,
             })
             : item,
-      ),
+      );
     });
     console.log('Resized', itemId, time, edge);
   }
 
   render() {
-    const calendarProps: ReactCalendarTimelineProps = {
-      groups: this.state.groups,
-      items: this.state.shifts,
-      canMove: true,
-      canResize: 'both',
-      itemsSorted: true,
-      itemTouchSendsClick: false,
-      defaultTimeStart: moment().startOf('day').toDate(),
-      defaultTimeEnd: moment().startOf('day').add(1, 'day').toDate(),
-      onItemResize: this.handleItemResize,
-      keys: {
-        groupIdKey: 'id',
-        groupTitleKey: 'title',
-        itemIdKey: 'id',
-        itemTitleKey: 'title',
-        itemGroupKey: 'group',
-        itemTimeStartKey: 'start',
-        itemTimeEndKey: 'end',
-      },
-      itemClick(item: any) {
-        console.log('Clicked: ' + item);
-      },
-      moveResizeValidator(action: any, item: any, time: any) {
-        if (time < new Date().getTime()) {
-          return Math.ceil(new Date().getTime() / (15 * 60 * 1000)) * (15 * 60 * 1000);
-        }
-        return time;
-      },
-    };
+    const { groups, shifts, defaultTimeStart, defaultTimeEnd } = this.state;
 
     return (
-      <ReactCalendarTimeline {...calendarProps} />
+      <ReactCalendarTimeline
+        groups={groups}
+        items={shifts}
+        keys={keys}
+        fullUpdate={true}
+        sidebarContent={<div>Above The Left</div>}
+        itemsSorted
+        itemTouchSendsClick={false}
+        stackItems
+        itemHeightRatio={0.75}
+        showCursorLine
+        canMove={true}
+        canResize={'both'}
+        defaultTimeStart={defaultTimeStart}
+        defaultTimeEnd={defaultTimeEnd}
+        onItemMove={this.handleItemMove}
+        onItemResize={this.handleItemResize}
+      />
     );
   }
 }
