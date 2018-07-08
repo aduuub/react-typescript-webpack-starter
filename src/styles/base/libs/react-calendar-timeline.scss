@@ -113,19 +113,14 @@
   margin: 0;
   overflow-x: hidden;
   z-index: 90;
-  height: 100px !important;
 }
 
 .react-calendar-timeline .rct-header .top-header,
 .react-calendar-timeline .rct-header .bottom-header {
   position: relative;
-  height: 50px !important;
 }
 
 .react-calendar-timeline .rct-header .rct-label-group {
-  padding-top: $v;
-  padding-bottom: $v;
-  height: 50px !important;
   position: absolute;
   top: 0;
   font-size: 14px;

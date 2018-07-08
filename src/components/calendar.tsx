@@ -1,7 +1,6 @@
-import * as faker from 'faker';
 import * as moment from 'moment';
 import * as React from 'react';
-import _ from 'react-calendar-timeline';
+// @ts-ignore
 import ReactCalendarTimeline, { ReactCalendarTimelineProps, TimelineGroup, TimelineItem } from 'react-calendar-timeline/lib';
 
 import { getShiftData } from 'components/utilities/fake-data';
@@ -63,8 +62,6 @@ export default class App extends React.Component<{}, IState> {
             : item,
       ),
     });
-
-    console.log('Moved', itemId, dragTime, newGroupOrder);
   }
 
   handleItemResize = (itemId: any, time: any, edge: any) => {
@@ -79,13 +76,14 @@ export default class App extends React.Component<{}, IState> {
               end: edge === 'left' ? item.end : time,
             })
             : item,
-      );
+      ),
     });
-    console.log('Resized', itemId, time, edge);
   }
 
   render() {
     const { groups, shifts, defaultTimeStart, defaultTimeEnd } = this.state;
+
+    const sidebarContent = <div className='u-textCenter u-mT-md'>Staff</div>;
 
     return (
       <ReactCalendarTimeline
@@ -93,12 +91,11 @@ export default class App extends React.Component<{}, IState> {
         items={shifts}
         keys={keys}
         fullUpdate={true}
-        sidebarContent={<div>Above The Left</div>}
+        sidebarContent={sidebarContent}
         itemsSorted
         itemTouchSendsClick={false}
         stackItems
         itemHeightRatio={0.75}
-        showCursorLine
         canMove={true}
         canResize={'both'}
         lineHeight={50}
