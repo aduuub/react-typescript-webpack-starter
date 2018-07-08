@@ -63,6 +63,33 @@ export default class App extends React.Component<{}, IState> {
       ),
     });
   }
+  onCanvasClick = (groupId: any, startTime: any, e: any) => {
+    // Create the new shift
+    const newShift = {
+        className: 'item-weekend',
+        end: startTime + (60 * 60 * 1000), // add on an hour
+        group: groupId,
+        id: this.state.shifts.length + 1,
+        itemProps: {
+          'data-tip': 'You cant bypass the system without synthesizing the haptic THX circuit!',
+        },
+        start: startTime,
+        title: '8:30am - 3:30pm at Prefab',
+    };
+
+    // console.log(newShift);
+
+    // Add it
+    this.setState((oldState: IState) => {
+      const shifts = oldState.shifts;
+      shifts.push(newShift);
+      // console.log(shifts);
+      return {
+        ...oldState,
+        shifts,
+      };
+    });
+  }
 
   handleItemResize = (itemId: any, time: any, edge: any) => {
     const { shifts } = this.state;
@@ -99,10 +126,13 @@ export default class App extends React.Component<{}, IState> {
         canMove={true}
         canResize={'both'}
         lineHeight={50}
+
         defaultTimeStart={defaultTimeStart}
         defaultTimeEnd={defaultTimeEnd}
+
         onItemMove={this.handleItemMove}
         onItemResize={this.handleItemResize}
+        onCanvasClick={this.onCanvasClick}
       />
     );
   }
