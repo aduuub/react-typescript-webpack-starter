@@ -25,6 +25,9 @@ const keys = {
 };
 
 export default class App extends React.Component<{}, IState> {
+
+  selectedShiftId?: string;
+
   constructor(props: any) {
     super(props);
 
@@ -45,6 +48,36 @@ export default class App extends React.Component<{}, IState> {
     };
   }
 
+  componentWillMount() {
+    document.addEventListener('keydown', this.handleKeyDown.bind(this));
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyDown.bind(this));
+  }
+
+  handleKeyDown(e: any) {
+    if (e.keyCode === 8) {
+        if (this.selectedShiftId != null) {
+          this.removeShift(this.selectedShiftId);
+        }
+        this.selectedShiftId = undefined;
+    }
+  }
+
+  removeShift(shiftId: string) {
+    this.setState((oldState: IState) => {
+      let oldShifts = oldState.shifts;
+      oldShifts = oldShifts.filter((shift: any) => shift.id !== shiftId);
+      const newShifts = [...oldShifts];
+
+      return {
+        ...oldState,
+        shifts: newShifts,
+      };
+    });
+  }
+
   handleItemMove = (itemId: any, dragTime: any, newGroupOrder: any) => {
     const { shifts, groups } = this.state;
 
@@ -63,13 +96,20 @@ export default class App extends React.Component<{}, IState> {
       ),
     });
   }
-  onCanvasClick = (groupId: any, startTime: any, e: any) => {
+
+  onItemSelect(itemId: string, _: any, time: any) {
+    console.log(itemId, time);
+    this.selectedShiftId = itemId;
+  }
+
+  onCanvasClick = (groupId: any, startTime: any, _: any) => {
+    const newId = Math.random() * 100000;
     // Create the new shift
     const newShift = {
         className: 'item-weekend',
         end: startTime + (60 * 60 * 1000), // add on an hour
         group: groupId,
-        id: this.state.shifts.length + 1,
+        id: String(newId),
         itemProps: {
           'data-tip': 'You cant bypass the system without synthesizing the haptic THX circuit!',
         },
@@ -77,16 +117,15 @@ export default class App extends React.Component<{}, IState> {
         title: '8:30am - 3:30pm at Prefab',
     };
 
-    // console.log(newShift);
-
     // Add it
     this.setState((oldState: IState) => {
-      const shifts = oldState.shifts;
-      shifts.push(newShift);
-      // console.log(shifts);
+      const oldShifts = oldState.shifts;
+      const newShifts = [...oldShifts];
+      newShifts.push(newShift);
+
       return {
         ...oldState,
-        shifts,
+        shifts: newShifts,
       };
     });
   }
@@ -133,6 +172,7 @@ export default class App extends React.Component<{}, IState> {
         onItemMove={this.handleItemMove}
         onItemResize={this.handleItemResize}
         onCanvasClick={this.onCanvasClick}
+        onItemSelect={this.onItemSelect.bind(this)}
       />
     );
   }
