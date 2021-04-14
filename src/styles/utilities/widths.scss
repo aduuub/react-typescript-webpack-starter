@@ -18,7 +18,7 @@
   // Quarters ============
   .u-#{$namespace}width1of4 { width: #{1/4 * 100%} !important; }
   // .u-#{$namespace}width2of4 { @extend .u-#{$namespace}width1of2 !optional; }
-  // .u-#{$namespace}width3of4 { width: #{3/4 * 100%} !important; }
+  .u-#{$namespace}width3of4 { width: #{3/4 * 100%} !important; }
   // .u-#{$namespace}width4of4 { @extend .u-#{$namespace}width1of1 !optional; }
 
   // Sixths ============

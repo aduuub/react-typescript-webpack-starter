@@ -1,7 +1,8 @@
 .Button {
-  border-radius: 8px;
-  color: $aqua;
-  background: $white;
+  @extend %primary-font;
+  border-radius: 4px;
+  color: $white;
+  background: $orange;
   padding: 8px;
   display: block;
   width: auto;
@@ -9,4 +10,10 @@
   min-width: 200px;
   display: block;
   text-decoration: none;
+}
+
+.Button--bland {
+  background: transparent;
+  font-size: 1.25rem;
+  min-width: 0;
 }

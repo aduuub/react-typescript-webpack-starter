@@ -3,5 +3,32 @@
 // ============
 
 %primary-font {
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 500;
+}
+
+%condensed-font {
+  font-family: 'Barlow Condensed', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+h1, .h1  {
+  @extend %condensed-font;
+  font-size: 4em;
+}
+
+h2, .h2  {
+  @extend %condensed-font;
+  font-size: 3em;
+}
+
+h3, .h3  {
+  @extend %condensed-font;
+  font-size: 2em;
+}
+
+h4, .h4  {
+  @extend %primary-font;
+  font-size: 1.5em;
 }

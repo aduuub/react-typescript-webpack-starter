@@ -1,7 +1,6 @@
 import * as React from 'react';
 
-import Navigation from 'components/app-nav';
-import Calendar from 'components/calendar';
+import Navigation from 'components/nav';
 
 export default class AppRoute extends React.Component {
   render() {
@@ -9,8 +8,11 @@ export default class AppRoute extends React.Component {
       <div>
         <Navigation />
 
-        <div className='u-mT-xl'>
-          <Calendar />
+        <div className='Header'>
+          <div className='Header-title'>
+            <h1>A statement about what you do</h1>
+            <h4>An entrepreneur, software developer, and project manager in Wellington, NZ</h4>
+          </div>
         </div>
       </div>
     );

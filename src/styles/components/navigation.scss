@@ -4,7 +4,8 @@
 
 .Nav {
   background-color: $primary;
-  padding: $v;
+  padding: $v * 3 $v * 5;
+  // height: 80px;
 }
 
 .Nav-title {
@@ -20,6 +21,7 @@
   margin-top: 0;
   margin-bottom: 0;
   padding-left: 0;
+  display: inline;
 }
 
 // <li>
