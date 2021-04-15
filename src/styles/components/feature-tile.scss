@@ -2,9 +2,23 @@
     background-color: $white;
     border-radius: 10px;
     padding: 28px;
+    height: 100%;
+    margin-left: 12px;
+    margin-right: 12px;
 }
 
 .FeatureTile-title {
     margin-top: 0;
     margin-bottom: 0;
+}
+
+.FeatureTile-image {
+    width: 130px;
+    height: 112px;
+    margin-right: 36px;
+    flex: 0;
+}
+
+.FeatureTile-content {
+    flex: 1;
 }

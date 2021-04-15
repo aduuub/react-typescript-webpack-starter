@@ -1,14 +1,21 @@
 import * as React from 'react';
 
-import computer from 'assets/computer.png';
+interface IProps {
+    title: string;
+    body: string;
+    image: any;
+}
 
-export default class FeatureTile extends React.Component {
+export default class FeatureTile extends React.Component<IProps> {
+
   render() {
       return (
         <div className='FeatureTile'>
-            <img src={computer}></img>
-            <h4 className='FeatureTile-title'>Property</h4>
-            <p className='FeatureTile-body'>I’ve managed several renovations with over 200% return on cost, got my hands dirty on the tools and now love to help others renovate their properties</p>
+            <img className='FeatureTile-image' src={this.props.image}></img>
+            <div className='FeatureTile-content'>
+                <h4 className='FeatureTile-title'>{this.props.title}</h4>
+                <p className='FeatureTile-body'>{this.props.body}</p>
+            </div>
         </div>
       );
   }
