@@ -1,20 +1,31 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
+    mode: 'development',
     entry: './src/index.tsx',
+    output: {
+        filename: 'static/js/bundle.js',
+        path: path.resolve(__dirname, 'dist'),
+        publicPath: '/'
+    },
     devtool: 'inline-source-map',
     resolve: {
         alias: {
             app: path.resolve(__dirname, './src'),
             components: path.resolve(__dirname, './src/components'),
             routes: path.resolve(__dirname, './src/routes'),
+            assets: path.resolve(__dirname, './src/assets'),
         },
         extensions: ['.tsx', '.ts', '.js', '.css']
     },
     module: {
         rules: [
+            {
+                test: /\.(jpe?g|png|gif|svg)$/i, 
+                loader: 'url-loader',
+            },
             {
                 test: /\.tsx?$/,
                 enforce: 'pre',
@@ -50,25 +61,9 @@ module.exports = {
             {
                 test: /\.scss$/,
                 exclude: /node_modules/,
-                use: ExtractTextPlugin.extract({
-                    use: [
-                        { loader: "css-loader" },
-                        {
-                            loader: "sass-loader",
-                            options: {
-                                sourceMap: true,
-                            }
-                        },
-                    ],
-                    fallback: "style-loader",
-                }),
+                use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
             },
         ]
-    },
-    output: {
-        filename: 'static/js/bundle.js',
-        path: path.resolve(__dirname, 'dist'),
-        publicPath: '/'
     },
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'),
@@ -76,7 +71,7 @@ module.exports = {
         historyApiFallback: true,
     },
     plugins: [
-        new ExtractTextPlugin('bundle.css'),
+        new MiniCssExtractPlugin(),
 
         new HtmlWebpackPlugin({
             template: "index.html"
