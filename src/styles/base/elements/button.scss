@@ -1,15 +1,16 @@
 .Button {
-  @extend %primary-font;
+  @extend %body-font;
   border-radius: 4px;
   color: $white;
   background: $orange;
   padding: 8px;
-  display: block;
   width: auto;
-  text-align: center;
   min-width: 200px;
   display: block;
   text-decoration: none;
+  height: 64px;
+  align-items: center; 
+  text-align: center;
 }
 
 .Button--bland {

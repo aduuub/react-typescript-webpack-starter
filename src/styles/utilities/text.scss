@@ -41,3 +41,44 @@
 
 // Font colours ===
 .u-textWarning { color: $warning; }
+
+// Custom ====
+
+h1, .h1  {
+  @extend %condensed-font;
+  font-size: 4em;
+}
+
+h2, .h2  {
+  @extend %condensed-font;
+  font-size: 3em;
+  color: $dark;
+}
+
+h3, .h3  {
+  @extend %condensed-font;
+  font-size: 1.75em;
+  color: $dark;
+}
+
+h4, .h4  {
+  @extend %condensed-font;
+  font-size: 1.5em;
+  color: $dark;
+}
+
+h5, .h5  {
+  @extend %primary-font;
+  font-size: 1.5em;
+  color: $dark;
+}
+
+%body-font {
+  @extend %primary-font;
+  font-size: 1.25em;
+}
+
+p, .p {
+  @extend %body-font;
+  color: $dark;
+}

@@ -1,7 +1,5 @@
 import * as React from 'react';
 
-import { Link } from 'react-router-dom';
-
 export default class Navigation extends React.Component {
   render() {
       return (
@@ -33,7 +31,7 @@ export default class Navigation extends React.Component {
 
                 <ul className='Nav-links u-right'>
                   <li className='Nav-links-item'>
-                    <Link to='/' className='Button'>Get in touch</Link>
+                    <button className='Button'>Get in touch</button>
                   </li>
                 </ul>
               </div>
