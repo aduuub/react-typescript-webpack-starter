@@ -1,0 +1,21 @@
+.HomeBlog {
+    padding-top: 48px;
+    background-color: $off-white;
+}
+
+.HomeBlog-header {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.HomeBlog-header-leading {
+    @extend %condensed-font;
+    color: $light-gray;
+    opacity: 0.5;
+}
+
+.HomeBlog-header-main {
+    margin-top: 0;
+}
