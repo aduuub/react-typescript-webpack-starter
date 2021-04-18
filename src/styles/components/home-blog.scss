@@ -3,6 +3,31 @@
     background-color: $off-white;
 }
 
+.HomeBlog--blue {
+    background-color: $primary;
+    
+    // Only blue has the slant
+    z-index: 2;
+    position: relative;
+
+    .HomeBlog-header-main, p, .BlogTile-title, .FeatureBlog-title {
+        color: $white;
+    }
+}
+
+.HomeBlog-slant {
+    height: 200px;
+    margin-top: -64px;
+    -webkit-transform: skewy(2deg);
+    transform: skewy(2deg);
+    background-color: $primary;
+    z-index: 1;
+}
+
+.HomeBlog-slant + div {
+    margin-top: -150px;
+}
+
 .HomeBlog-header {
     max-width: 700px;
     margin-left: auto;
@@ -23,7 +48,7 @@
 .HomeBlog-tiles {
     padding-left: 98px;
     padding-right: 98px;
-    padding-bottom: 100px;
+    padding-bottom: 144px;
     margin: 36px auto;
 }
 
@@ -32,18 +57,4 @@
     display: flex;
     flex-direction: column;
     align-items: stretch;
-}
-
-// Feature tile
-
-.FeatureBlog {
-    height: 100%;
-}
-
-.FeatureBlog--left {
-    margin-right: 80px;
-}
-
-.FeatureBlog--right {
-    margin-left: 80px;   
 }

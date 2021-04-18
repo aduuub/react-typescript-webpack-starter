@@ -37,18 +37,20 @@ export default class Header extends React.Component<IProps> {
     );
 
       return (
-        <div className='Header'>
-        <div className='Header-title'>
-          <h1>A statement about what you do</h1>
-          <h5>An entrepreneur, software developer, and project manager in Wellington, NZ</h5>
-        </div>
-        <div className='Header-content'>
-          <div className='Grid u-flex'>
-            {featureTiles}
+        <>
+          <div className='Header'>
+            <div className='Header-title'>
+              <h1>A statement about what you do</h1>
+              <h5>An entrepreneur, software developer, and project manager in Wellington, NZ</h5>
+            </div>
+            <div className='Header-content'>
+              <div className='Grid u-flex'>
+                {featureTiles}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-
+          <div className='Header-footer'></div>
+        </>
       );
   }
 }

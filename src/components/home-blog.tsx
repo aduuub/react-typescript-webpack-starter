@@ -31,20 +31,25 @@ export default class HomeBlog extends React.Component<IProps> {
         columns.reverse();
     }
 
-      return (
-      <div className='HomeBlog'>
-          <Header />
-          <div className='HomeBlog-tiles'>
-              <div className='Grid u-flex'>
-                  <div className='u-width1of2'>
-                    {columns[0]}
-                  </div>
-                  <div className='u-width1of2'>
-                    {columns[1]}
-                  </div>
-              </div>
+    let homeBlogModifier = this.props.blue ? 'HomeBlog--blue' : ''
+
+    return (
+        <>
+        {this.props.blue ? <div className='HomeBlog-slant'></div> : <></> }
+          <div className={'HomeBlog ' + homeBlogModifier}>
+            <Header />
+            <div className=' HomeBlog-tiles'>
+                <div className='Grid u-flex'>
+                    <div className='u-width1of2'>
+                        {columns[0]}
+                    </div>
+                    <div className='u-width1of2'>
+                        {columns[1]}
+                    </div>
+                </div>
+            </div>
           </div>
-        </div>
+        </>
     );
   }
 }
@@ -76,7 +81,7 @@ function FeatureBlog(props: IFeatureBlogProps) {
     return (
         <div className={'FeatureBlog ' + featureBlogClass} >
             <img src={props.article.image} />
-            <h4>{props.article.title}</h4>
+            <h4 className='FeatureBlog-title'>{props.article.title}</h4>
             <p>{props.article.body}</p>
         </div>
     );

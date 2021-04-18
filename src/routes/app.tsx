@@ -22,10 +22,7 @@ export default class AppRoute extends React.Component {
     return (
       <div>
         <Navigation />
-
         <Header />
-        <div className='Header-footer'></div>
-
         <AboutMe />
         <HomeBlog articles={articles} />
         <HomeBlog articles={articles} flipped={true} blue={true} />

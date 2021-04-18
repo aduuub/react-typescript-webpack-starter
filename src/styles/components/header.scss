@@ -36,3 +36,7 @@
     background-color: $primary;
     z-index: 1;
 }
+
+.Header-footer + div {
+    margin-top: -100px;
+}
