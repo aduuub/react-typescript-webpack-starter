@@ -19,12 +19,8 @@ export default class HomeBlog extends React.Component<IProps> {
 
     // Standard tiles
     const remainingTiles = this.props.articles.slice(1, 4);
-    const blogs = (
-        <div className='Homeblog-tiles-list'>
-            {remainingTiles.map((article, index) => <BlogTile article={article} key={index} />)}
-        </div>
-    );
-
+    const blogs = <BlogList articles={remainingTiles} />
+    
     // Both columns (so we can flip it)
     const columns = [feature, blogs];
     if (this.props.flipped) {
@@ -38,8 +34,15 @@ export default class HomeBlog extends React.Component<IProps> {
         {this.props.blue ? <div className='HomeBlog-slant'></div> : <></> }
           <div className={'HomeBlog ' + homeBlogModifier}>
             <Header />
-            <div className=' HomeBlog-tiles'>
-                <div className='Grid'>
+            <div className='HomeBlog-tiles'>
+
+                {/* Mobile */}
+                <div className='u-md-hidden'>
+                    <BlogList articles={this.props.articles} />
+                </div>
+                
+                {/* Tablet */}
+                <div className='Grid u-sm-hidden'>
                     <div className='u-md-width1of2'>
                         {columns[0]}
                     </div>
@@ -53,6 +56,16 @@ export default class HomeBlog extends React.Component<IProps> {
     );
   }
 }
+
+// Article list === 
+
+function BlogList(props: {articles: IArticleTile[]}) {
+    return (
+        <div className='Homeblog-tiles-list'>
+            {props.articles.map((article, index) => <BlogTile article={article} key={index} />)}
+        </div>
+    );
+};
 
 // Blog header ===
 

@@ -48,10 +48,15 @@
 }
 
 .HomeBlog-tiles {
-    padding-left: 98px;
-    padding-right: 98px;
+    padding-left: 24px;
+    padding-right: 24px;
     padding-bottom: 144px;
     margin: 36px auto;
+
+    @media #{$tablet} {
+        padding-left: 98px;
+        padding-right: 98px;
+    }
 }
 
 .Homeblog-tiles-list {
