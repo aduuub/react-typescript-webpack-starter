@@ -1,0 +1,34 @@
+%base-input {
+    @extend %primary-font;
+    border: 1px solid #C9CFE6;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 18px 32px;
+    margin-bottom: 16px;
+    background-color: $white;
+    font-size: 1.25em;
+    color: $dark;
+    font-weight: 300;
+
+    &:focus {
+        box-shadow: 0 0 10px 0px $active;
+    }
+
+    &.Error {
+        box-shadow: 0 0 10px 0px $warning;
+    }
+}
+
+.Input {
+    @extend %base-input;
+}
+
+.TextArea {
+    @extend %base-input;
+    width: 100%;
+    height: 196px;
+}
+
+.Input {
+    
+}

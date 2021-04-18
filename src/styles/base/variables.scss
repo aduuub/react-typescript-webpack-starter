@@ -2,12 +2,16 @@ $v: 1rem; // 16px
 
 // Primary ===
 $primary: #43597D;
+$deep-blue: #3A4F70;
 $orange: #DE7356;
 $dark: #2B3240;
 $white: #FFFFFF;
 $off-white: #E5E5E5;
 $light-gray: #1B2B5B;
 
+$active: #00bfff;
+
 
 // Errors ===
-$warning: red;
+$error: #d12839;
+$warning: $error;

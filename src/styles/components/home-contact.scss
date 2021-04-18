@@ -1,0 +1,33 @@
+.HomeContact {
+    margin-top: -144px;
+    background-color: $deep-blue;
+    position: relative;
+    z-index: 4;
+    padding-bottom: 16px;
+}
+
+.HomeContact-container {
+    padding-left: 96px;
+    padding-right: 96px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.HomeContact-title, .HomeContact-body {
+    color: $white;
+    margin-right: 56px;
+}
+
+.HomeContact-form {
+    margin: 42px 0;
+}
+
+.HomeContact-slant {
+    height: 200px;
+    margin-top: -64px;
+    -webkit-transform: skewy(-2deg);
+    transform: skewy(-2deg);
+    background-color: $deep-blue;
+    z-index: 3;
+    position: relative;
+}

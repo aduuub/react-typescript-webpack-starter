@@ -3,6 +3,7 @@ import * as React from 'react';
 import { IArticleTile } from 'models/article';
 
 import AboutMe from 'components/about-me';
+import Contact from 'components/home-contact';
 import Header from 'components/header';
 import HomeBlog from 'components/home-blog';
 import Navigation from 'components/nav';
@@ -26,6 +27,7 @@ export default class AppRoute extends React.Component {
         <AboutMe />
         <HomeBlog articles={articles} />
         <HomeBlog articles={articles} flipped={true} blue={true} />
+        <Contact />
       </div>
     );
   }
