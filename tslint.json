@@ -6,9 +6,11 @@
       true,
       "single"
     ],
+    "no-trailing-whitespace": false,
+    "no-empty-interface": false,
     "space-before-function-paren": [ "error", "always" ],
     "ordered-imports": [
-      true,
+      false,
       {
         "grouped-imports": true,
         "import-sources-order": "lowercase-last",

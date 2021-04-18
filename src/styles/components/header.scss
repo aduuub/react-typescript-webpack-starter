@@ -28,6 +28,15 @@
     margin-right: auto;
 }
 
+.Header-content-items {
+    @media #{$tablet} {
+        background: red !important;
+        display: flex;
+        align-items: stretch;
+        justify-content: space-around;   
+    }
+}
+
 .Header-footer {
     height: 200px;
     margin-top: -48px;

@@ -20,7 +20,7 @@ $breakpoint4: 1600px;
 // ============
 
 // Define the lower and upper bounds for each media size
-$sm-range: (0, $breakpoint1 - $infinitesimal); // 0-767
+$sm-range: ($infinitesimal - $breakpoint1); // 0-767
 $sm-md-range: ($breakpoint1, $breakpoint2 - $infinitesimal); // 768-1023
 $md-lg-range: ($breakpoint2, $breakpoint3 - $infinitesimal); // 1024-1279
 $lg-xl-range: ($breakpoint3, $breakpoint4 - $infinitesimal); // 1280-1599
@@ -35,7 +35,7 @@ $tablet-only: "(min-width: #{lower-bound($sm-md-range)}) and (max-width:#{upper-
 $laptop-only: "(min-width: #{lower-bound($md-lg-range)}) and (max-width:#{upper-bound($lg-xl-range)})" !default;
 $desktop-only: "(min-width: #{lower-bound($lg-xl-range)}) and (max-width:#{upper-bound($xl-range)})" !default;
 
-$tablet: "print, (min-width: #{lower-bound($sm-md-range)})" !default;
+$tablet: "(min-width: #{lower-bound($sm-md-range)})" !default;
 $laptop: "(min-width: #{lower-bound($md-lg-range)})" !default;
 $desktop: "(min-width: #{lower-bound($lg-xl-range)})" !default;
 $widescreen: "(min-width: #{lower-bound($xl-range)})" !default;

@@ -10,7 +10,6 @@ interface IProps {
 
 export default class Header extends React.Component<IProps> {
 
-
   titleContent() {
     return [
       {
@@ -27,16 +26,13 @@ export default class Header extends React.Component<IProps> {
   }
 
   render() {
-    const featureTiles = this.titleContent().map((content) =>
-    <div className='u-width1of2'>
-      <FeatureTile
-        title={content.title}
-        body={content.body}
-        image={content.image} />
-    </div>,
+    const featureTiles = this.titleContent().map((content, index) =>
+      <div className='u-sm-width1of1 u-md-width1of2' key={index}>
+        <FeatureTile title={content.title} body={content.body} image={content.image} key={index} />
+      </div>,
     );
 
-      return (
+    return (
         <>
           <div className='Header'>
             <div className='Header-title'>
@@ -44,13 +40,13 @@ export default class Header extends React.Component<IProps> {
               <h5>An entrepreneur, software developer, and project manager in Wellington, NZ</h5>
             </div>
             <div className='Header-content'>
-              <div className='Grid u-flex'>
+              <div className='Grid Header-content-items'>
                 {featureTiles}
               </div>
             </div>
           </div>
           <div className='Header-footer'></div>
         </>
-      );
+    );
   }
 }

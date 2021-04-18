@@ -27,9 +27,3 @@ export default class BlogTile extends React.Component<IProps> {
       );
   }
 }
-
-
-
-
-
-

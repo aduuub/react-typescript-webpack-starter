@@ -14,24 +14,24 @@ export default class HomeBlog extends React.Component<IProps> {
 
   render() {
     // Feature tile
-    let isFlipped = this.props.flipped ?? false;
-    let feature = <FeatureBlog isLeft={!isFlipped} article={this.props.articles[0]} />;
+    const isFlipped = this.props.flipped ?? false;
+    const feature = <FeatureBlog isLeft={!isFlipped} article={this.props.articles[0]} />;
 
     // Standard tiles
-    let remainingTiles = this.props.articles.slice(1, 4);
-    let blogs = (
+    const remainingTiles = this.props.articles.slice(1, 4);
+    const blogs = (
         <div className='Homeblog-tiles-list'>
-            {remainingTiles.map(article => <BlogTile article={article} />)}
+            {remainingTiles.map((article, index) => <BlogTile article={article} key={index} />)}
         </div>
     );
 
     // Both columns (so we can flip it)
-    let columns = [feature, blogs];
+    const columns = [feature, blogs];
     if (this.props.flipped) {
         columns.reverse();
     }
 
-    let homeBlogModifier = this.props.blue ? 'HomeBlog--blue' : ''
+    const homeBlogModifier = this.props.blue ? 'HomeBlog--blue' : '';
 
     return (
         <>
@@ -77,7 +77,7 @@ interface IFeatureBlogProps {
 }
 
 function FeatureBlog(props: IFeatureBlogProps) {
-    let featureBlogClass = props.isLeft ? 'FeatureBlog--left' : 'FeatureBlog--right';
+    const featureBlogClass = props.isLeft ? 'FeatureBlog--left' : 'FeatureBlog--right';
     return (
         <div className={'FeatureBlog ' + featureBlogClass} >
             <img src={props.article.image} />

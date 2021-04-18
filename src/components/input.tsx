@@ -13,7 +13,7 @@ export default class AboutMe extends React.Component<IProps> {
         <textarea className='TextArea' placeholder={this.props.placeholder}></textarea>
     );
     }
-      return (
+    return (
           <input className='Input' placeholder={this.props.placeholder}></input>
       );
   }

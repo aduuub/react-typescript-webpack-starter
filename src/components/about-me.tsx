@@ -24,4 +24,4 @@ export default class AboutMe extends React.Component<IProps> {
       </div>
       );
   }
-}  
+}

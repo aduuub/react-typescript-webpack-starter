@@ -7,7 +7,8 @@
     "start": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.dev.js",
     "build:prod": "webpack --config webpack.dev.js",
-    "test": "echo \"Error: ain't no body got time 4 dat\" && exit 1"
+    "test": "echo \"Error: ain't no body got time 4 dat\" && exit 1",
+    "lint": "tslint --project tsconfig.json --format verbose"
   },
   "keywords": [
     "npm",
