@@ -1,0 +1,36 @@
+
+.BlogTile {
+    flex-grow: 1;
+    flex-basis: 100%;
+}
+
+.BlogTile-container {
+    display: flex;
+}
+
+.BlogTile-title {
+    margin-top: 0;
+    margin-bottom: 8px;
+    margin-left: 24px;
+}
+
+.BlogTile-left {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.BlogTile-left-img {
+    max-width: 100%;
+    height: auto;
+}
+
+.BlogTile-right {
+
+}
+
+.BlogTile-body {
+    margin-top: 0;   
+    margin-left: 24px;
+}
