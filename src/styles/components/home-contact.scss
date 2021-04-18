@@ -7,15 +7,23 @@
 }
 
 .HomeContact-container {
-    padding-left: 96px;
-    padding-right: 96px;
+    padding-left: 24px;
+    padding-right: 24px;
+
+    @media #{$tablet} {
+        padding-left: 96px;
+        padding-right: 96px;
+    }
+    
     margin-left: auto;
     margin-right: auto;
 }
 
 .HomeContact-title, .HomeContact-body {
     color: $white;
-    margin-right: 156px;
+    @media #{$tablet} {
+        margin-right: 156px;
+    }
 }
 
 .HomeContact-form {

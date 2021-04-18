@@ -10,5 +10,7 @@
 }
 
 .AboutMe-content {
-    padding-left: 96px;
+    @media #{$tablet} {
+        padding-left: 96px;
+    }
 }

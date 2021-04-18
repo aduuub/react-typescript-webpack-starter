@@ -39,11 +39,11 @@ export default class HomeBlog extends React.Component<IProps> {
           <div className={'HomeBlog ' + homeBlogModifier}>
             <Header />
             <div className=' HomeBlog-tiles'>
-                <div className='Grid u-flex'>
-                    <div className='u-width1of2'>
+                <div className='Grid'>
+                    <div className='u-md-width1of2'>
                         {columns[0]}
                     </div>
-                    <div className='u-width1of2'>
+                    <div className='u-md-width1of2'>
                         {columns[1]}
                     </div>
                 </div>
