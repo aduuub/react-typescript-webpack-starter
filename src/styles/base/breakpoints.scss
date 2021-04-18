@@ -14,13 +14,32 @@ $breakpoint2: 1024px;
 $breakpoint3: 1280px;
 $breakpoint4: 1600px;
 
+// ============
+// Bounds
+// ============
+
+@function lower-bound($range) {
+    @if length($range) <=0 {
+        @return 0;
+    }
+
+    @return nth($range, 1);
+}
+
+@function upper-bound($range) {
+    @if length($range) < 2 {
+        @return 999999999999;
+    }
+
+    @return nth($range, 2);
+}
 
 // ============
 // Ranges
 // ============
 
 // Define the lower and upper bounds for each media size
-$sm-range: ($infinitesimal - $breakpoint1); // 0-767
+$sm-range: (0, $breakpoint1 - $infinitesimal); // 0-767
 $sm-md-range: ($breakpoint1, $breakpoint2 - $infinitesimal); // 768-1023
 $md-lg-range: ($breakpoint2, $breakpoint3 - $infinitesimal); // 1024-1279
 $lg-xl-range: ($breakpoint3, $breakpoint4 - $infinitesimal); // 1280-1599

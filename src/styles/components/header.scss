@@ -30,7 +30,6 @@
 
 .Header-content-items {
     @media #{$tablet} {
-        background: red !important;
         display: flex;
         align-items: stretch;
         justify-content: space-around;   
