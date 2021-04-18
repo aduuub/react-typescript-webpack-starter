@@ -1,9 +1,10 @@
 import * as React from 'react';
 
+import { IArticleTile } from 'models/article';
 import person from 'assets/person.png';
 
 interface IProps {
-    
+    article: IArticleTile;
 }
 
 export default class BlogTile extends React.Component<IProps> {

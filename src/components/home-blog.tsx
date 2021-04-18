@@ -1,28 +1,46 @@
 import * as React from 'react';
 
-import person from 'assets/person.png';
+import { IArticleTile } from 'models/article';
+
 import BlogTile from './blog-tile';
 
 interface IProps {
+    flipped?: boolean;
+    blue?: boolean;
+    articles: IArticleTile[];
 }
 
 export default class HomeBlog extends React.Component<IProps> {
 
   render() {
+    // Feature tile
+    let isFlipped = this.props.flipped ?? false;
+    let feature = <FeatureBlog isLeft={!isFlipped} article={this.props.articles[0]} />;
+
+    // Standard tiles
+    let remainingTiles = this.props.articles.slice(1, 4);
+    let blogs = (
+        <div className='Homeblog-tiles-list'>
+            {remainingTiles.map(article => <BlogTile article={article} />)}
+        </div>
+    );
+
+    // Both columns (so we can flip it)
+    let columns = [feature, blogs];
+    if (this.props.flipped) {
+        columns.reverse();
+    }
+
       return (
       <div className='HomeBlog'>
           <Header />
           <div className='HomeBlog-tiles'>
               <div className='Grid u-flex'>
                   <div className='u-width1of2'>
-                  <FeatureBlog />
+                    {columns[0]}
                   </div>
                   <div className='u-width1of2'>
-                      <div className='Homeblog-tiles-list'>
-                        <BlogTile />
-                        <BlogTile />
-                        <BlogTile />
-                      </div>
+                    {columns[1]}
                   </div>
               </div>
           </div>
@@ -30,6 +48,8 @@ export default class HomeBlog extends React.Component<IProps> {
     );
   }
 }
+
+// Blog header ===
 
 function Header() {
     return (
@@ -41,16 +61,23 @@ function Header() {
                 trading a property (buying to renovate and sell).<br /><br />Get in touch to get some assistance with
                 your renovation. </p>
         </div>
-);
+    );
 }
 
-function FeatureBlog() {
+// Feature blog === 
+
+interface IFeatureBlogProps {
+    isLeft: boolean;
+    article: IArticleTile;
+}
+
+function FeatureBlog(props: IFeatureBlogProps) {
+    let featureBlogClass = props.isLeft ? 'FeatureBlog--left' : 'FeatureBlog--right';
     return (
-        <div className='FeatureBlog'>
-        <img src={person} />
-        <h4>Article name</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam imperdiet ligula vitae sapien
-            pulvina. </p>
-    </div>
+        <div className={'FeatureBlog ' + featureBlogClass} >
+            <img src={props.article.image} />
+            <h4>{props.article.title}</h4>
+            <p>{props.article.body}</p>
+        </div>
     );
 }

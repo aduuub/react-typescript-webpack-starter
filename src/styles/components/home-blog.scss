@@ -37,6 +37,13 @@
 // Feature tile
 
 .FeatureBlog {
-    margin-right: 80px;
     height: 100%;
+}
+
+.FeatureBlog--left {
+    margin-right: 80px;
+}
+
+.FeatureBlog--right {
+    margin-left: 80px;   
 }
