@@ -19,7 +19,7 @@ export default class HomeBlog extends React.Component<IProps> {
 
     // Standard tiles
     const remainingTiles = this.props.articles.slice(1, 4);
-    const blogs = <BlogList articles={remainingTiles} />
+    const blogs = <BlogList articles={remainingTiles} />;
     
     // Both columns (so we can flip it)
     const columns = [feature, blogs];
@@ -65,7 +65,7 @@ function BlogList(props: {articles: IArticleTile[]}) {
             {props.articles.map((article, index) => <BlogTile article={article} key={index} />)}
         </div>
     );
-};
+}
 
 // Blog header ===
 
