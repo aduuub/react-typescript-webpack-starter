@@ -29,7 +29,7 @@ export default class HomeContact extends React.Component<IProps, IState> {
         this.sending = false;
         this.state = {
             sent: false,
-        }
+        };
     }
 
     validateInput(input: HTMLInputElement | HTMLTextAreaElement): boolean {
@@ -57,7 +57,7 @@ export default class HomeContact extends React.Component<IProps, IState> {
     handleSubmit(event: FormEvent<EventTarget>) {
         event.preventDefault();
         
-        if(this.sending) {
+        if (this.sending) {
             return;
         }
         this.sending = true;
@@ -76,7 +76,7 @@ export default class HomeContact extends React.Component<IProps, IState> {
         fetch('http://localhost:5000/contact', {
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
             method: 'post',
             body: data,
