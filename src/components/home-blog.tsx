@@ -1,13 +1,15 @@
 import * as React from 'react';
+import { Element } from 'react-scroll';
 
 import { IArticleTile } from 'models/article';
-
 import BlogTile from './blog-tile';
 
 interface IProps {
+    articles: IArticleTile[];
+    name: string;
+
     flipped?: boolean;
     blue?: boolean;
-    articles: IArticleTile[];
 }
 
 export default class HomeBlog extends React.Component<IProps> {
@@ -30,7 +32,7 @@ export default class HomeBlog extends React.Component<IProps> {
     const homeBlogModifier = this.props.blue ? 'HomeBlog--blue' : '';
 
     return (
-        <>
+        <Element name={this.props.name}>
         {this.props.blue ? <div className='HomeBlog-slant'></div> : <></> }
           <div className={'HomeBlog ' + homeBlogModifier}>
             <Header />
@@ -52,7 +54,7 @@ export default class HomeBlog extends React.Component<IProps> {
                 </div>
             </div>
           </div>
-        </>
+        </Element>
     );
   }
 }

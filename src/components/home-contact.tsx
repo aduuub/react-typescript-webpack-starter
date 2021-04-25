@@ -1,6 +1,9 @@
 import * as React from 'react';
 
 import { FormEvent, RefObject } from 'react';
+import { Element } from 'react-scroll';
+
+import Constants from 'models/constants';
 
 interface IProps {
 }
@@ -100,7 +103,7 @@ export default class HomeContact extends React.Component<IProps, IState> {
 
     render() {
         return (
-            <>
+            <Element name={Constants.contactKey}>
             <div className='HomeContact-slant'></div>
             <div className='HomeContact'>
                 <div className='HomeContact-container'>
@@ -132,7 +135,7 @@ export default class HomeContact extends React.Component<IProps, IState> {
                     </div>
                 </div>
             </div>
-            </>
+            </Element>
         );
     }
 }

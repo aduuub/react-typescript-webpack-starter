@@ -1,5 +1,9 @@
 import * as React from 'react';
 
+import { Link } from 'react-scroll';
+
+import Constants from 'models/constants';
+
 export default class Navigation extends React.Component {
   render() {
       return (
@@ -14,15 +18,15 @@ export default class Navigation extends React.Component {
                     <h3 className='Nav-title'>Adam Wareing</h3>
                   </li>
                   {/* Links */}
-                  <li className='Nav-links-item Nav-links-item--tabletOnly'>
+                  <Link className='Nav-links-item Nav-links-item--tabletOnly' to={Constants.aboutMeKey} duration={500} smooth={true}>
                     <button className='Button Button--bland'>About me</button>
-                  </li>
-                  <li className='Nav-links-item Nav-links-item--tabletOnly'>
+                  </Link>
+                  <Link className='Nav-links-item Nav-links-item--tabletOnly' to={Constants.propertyKey} duration={500} smooth={true}>
                     <button className='Button Button--bland'>Property</button>
-                  </li>
-                  <li className='Nav-links-item Nav-links-item--tabletOnly'>
+                  </Link>
+                  <Link className='Nav-links-item Nav-links-item--tabletOnly' to={Constants.softwareKey} duration={500} smooth={true}>
                     <button className='Button Button--bland'>Software development</button>
-                  </li>
+                  </Link>
                 </ul>
               </div>
 
@@ -30,9 +34,9 @@ export default class Navigation extends React.Component {
               <div className='u-md-width1of4'>
 
                 <ul className='Nav-links u-right'>
-                  <li className='Nav-links-item Nav-links-item--tabletOnly'>
+                <Link className='Nav-links-item Nav-links-item--tabletOnly' to={Constants.contactKey} duration={500} smooth={true}>
                     <button className='Button'>Get in touch</button>
-                  </li>
+                  </Link>
                 </ul>
               </div>
             </div>

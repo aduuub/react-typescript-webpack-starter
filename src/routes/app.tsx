@@ -7,8 +7,10 @@ import Contact from 'components/home-contact';
 import Header from 'components/header';
 import HomeBlog from 'components/home-blog';
 import Navigation from 'components/nav';
+import Constants from 'models/constants';
 
 import person from 'assets/person.png';
+
 
 export default class AppRoute extends React.Component {
 
@@ -25,8 +27,8 @@ export default class AppRoute extends React.Component {
         <Navigation />
         <Header />
         <AboutMe />
-        <HomeBlog articles={articles} />
-        <HomeBlog articles={articles} flipped={true} blue={true} />
+        <HomeBlog articles={articles} name={Constants.propertyKey} />
+        <HomeBlog articles={articles} name={Constants.softwareKey} flipped={true} blue={true} />
         <Contact />
       </div>
     );
