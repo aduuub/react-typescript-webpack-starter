@@ -47,11 +47,11 @@ export default class HomeContact extends React.Component<IProps, IState> {
     }
 
     validate(): boolean {
-        return (
-            this.validateInput(this.name.current!) &&
-            this.validateInput(this.email.current!) &&
-            this.validateInput(this.message.current!)
-        );
+        const validName = this.validateInput(this.name.current!);
+        const validEmail = this.validateInput(this.email.current!);
+        const validMessage = this.validateInput(this.message.current!);
+
+        return validName && validEmail && validMessage;
     }
 
     handleSubmit(event: FormEvent<EventTarget>) {
@@ -60,15 +60,17 @@ export default class HomeContact extends React.Component<IProps, IState> {
         if (this.sending) {
             return;
         }
-        this.sending = true;
 
         if (!this.validate()) {
             return;
         }
 
+        this.sending = true;
+        console.log('send');
+
         const name = this.value(this.name.current!);
-        const email = this.value(this.name.current!);
-        const message = this.value(this.name.current!);
+        const email = this.value(this.email.current!);
+        const message = this.value(this.message.current!);
 
         const formData = new ContactFormData(name, email, message);
         const data = JSON.stringify(formData);
