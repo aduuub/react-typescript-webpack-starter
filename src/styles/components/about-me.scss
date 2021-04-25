@@ -5,8 +5,13 @@
 
     padding-top: 256px;
     padding-bottom: 56px;
-    padding-left: 98px;
-    padding-right: 98px;
+    padding-left: 24px;
+    padding-right: 24px;
+
+    @media #{$tablet} {
+        padding-left: 98px;
+        padding-right: 98px;
+    }
 }
 
 .AboutMe-content {

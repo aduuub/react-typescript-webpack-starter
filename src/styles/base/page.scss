@@ -1,3 +1,4 @@
 html, body { 
   @extend %primary-font !optional;
+  background-color: $primary;
 }

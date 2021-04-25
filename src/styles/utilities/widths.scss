@@ -5,6 +5,9 @@
 @mixin widths($namespace: "") {
 
   // Full width
+  .u-#{$namespace}width0of0 { width: 0% !important; }
+
+  // Full width
   // .u-#{$namespace}width1of1 { width: 100% !important; }
 
   // Halves ============

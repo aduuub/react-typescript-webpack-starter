@@ -1,7 +1,6 @@
 // Reset
 @import 'reset';
 @import 'form-reset';
-@import 'page';
 
 // Core
 @import 'variables';
@@ -12,3 +11,6 @@
 // Elements
 @import 'elements/_index';
 @import 'libs/_index';
+
+// Page styles
+@import 'page';

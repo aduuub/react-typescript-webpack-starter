@@ -11,7 +11,7 @@ export default class Navigation extends React.Component {
           <div className='Nav'>
             <div className='Grid'>
               {/* Left side */}
-              <div className='u-md-width3of4'>
+              <div className='u-width1of1 u-lg-width3of4'>
                 <ul className='Nav-links'>
                   {/* Name */}
                   <li className='Nav-links-item'>
@@ -31,10 +31,9 @@ export default class Navigation extends React.Component {
               </div>
 
               {/* Right side */}
-              <div className='u-md-width1of4'>
-
+              <div className='u-width0of0 u-lg-width1of4'>
                 <ul className='Nav-links u-right'>
-                <Link className='Nav-links-item Nav-links-item--tabletOnly' to={Constants.contactKey} duration={500} smooth={true}>
+                <Link className='Nav-links-item Nav-links-item--largeOnly' to={Constants.contactKey} duration={500} smooth={true}>
                     <button className='Button'>Get in touch</button>
                   </Link>
                 </ul>

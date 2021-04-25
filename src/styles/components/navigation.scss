@@ -42,3 +42,10 @@
     display: none;
   }
 }
+
+.Nav-links-item--largeOnly {
+  display: none;
+  @media #{$laptop} {
+    display: block;
+  }
+}

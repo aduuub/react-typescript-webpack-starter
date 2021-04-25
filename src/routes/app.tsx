@@ -11,7 +11,6 @@ import Constants from 'models/constants';
 
 import person from 'assets/person.png';
 
-
 export default class AppRoute extends React.Component {
 
   render() {
